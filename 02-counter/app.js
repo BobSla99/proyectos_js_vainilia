@@ -1,28 +1,24 @@
-let value = 0;
+//set initial value
+let count = 0;
 
-btnDecre = document.querySelector(".decrease");
-btnReset = document.querySelector(".reset");
-btnIncre = document.querySelector(".increase");
+value = document.querySelector("#value");
+btns = document.querySelectorAll(".btn");
 
-btnDecre.addEventListener("click", () => {
-  value--;
-  renderValue();
+btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const style = e.target.classList;
+    if (style.contains("decrease")) {
+      count--;
+    } else if (style.contains("increase")) {
+      count++;
+    } else if (style.contains("reset")) {
+      count = 0;
+    }
+    value.textContent = count;
+    count < 0 ? (value.style.color = "red") : null;
+    count > 0 ? (value.style.color = "green") : null;
+    count === 0 ? (value.style.color = "black") : null;
+  });
 });
 
-btnReset.addEventListener("click", () => {
-  value=0;
-  renderValue();
-});
-
-btnIncre.addEventListener("click", () => {
-  value++;
-  renderValue();
-});
-
-function renderValue() {
-  const valueE = document.querySelector("#value");
-  valueE.textContent = value;
-  value < 0 ? (valueE.style.color = "red") : null;
-  value > 0 ? (valueE.style.color = "green") : null;
-  value === 0 ? (valueE.style.color = "black") : null;
-}
+function renderValue() {}
