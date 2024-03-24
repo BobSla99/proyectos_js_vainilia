@@ -144,6 +144,7 @@ function renderFilterBtn() {
     btn.textContent = category;
     btnConatiner.appendChild(btn);
 
+    //andir evento al boton
     btn.addEventListener("click", (e) => {
       const filter = e.currentTarget.textContent;
       const menuFiltered = filterMenu(filter);
