@@ -71,31 +71,31 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: "Pizza  Sarten",
+    category: "pastas",
+    price: 150.99,
+    img: "./images/sarten.jpg",
+    desc: `Delicius pizza cubana made with cheese gouda.
+    ldfjakdfkasdfkjadsfdfsksd`,
+  },
 ];
 
-const btns = document.querySelectorAll(".filter-btn");
 let filter = "all"; //aqui se guardara la seleccion del filtro
 
 let menuFiltered = "";
 
 document.addEventListener("DOMContentLoaded", () => {
+  renderFilterBtn();
+
   menuFiltered = filterMenu(filter);
   renderMenu(menuFiltered);
-});
-
-btns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    filter = btn.textContent;
-    menuFiltered = filterMenu(filter);
-    renderMenu(menuFiltered);
-  });
 });
 
 function renderMenu(menu) {
   let sectionCenter = document.querySelector(".section-center");
   sectionCenter.innerHTML = "";
-
-  console.log(menu);
 
   let html = menu.map((item) => {
     const { title, price, img, desc } = item;
@@ -121,4 +121,33 @@ function renderMenu(menu) {
 function filterMenu(filter) {
   if (filter === "all") return menu;
   return menu.filter((item) => item.category === filter);
+}
+
+//obtiene las categorioas y anade botones del filtro
+function renderFilterBtn() {
+  //obtener categorias de los item
+  const categories = ["all"];
+
+  menu.forEach((item) => {
+    if (!categories.includes(item.category)) {
+      categories.push(item.category);
+    }
+  });
+
+  //generar los botones de filtro
+  const btnConatiner = document.querySelector(".btn-container");
+
+  btnConatiner.innerHTML = "";
+  categories.forEach((category) => {
+    const btn = document.createElement("button");
+    btn.classList.add("filter-btn");
+    btn.textContent = category;
+    btnConatiner.appendChild(btn);
+
+    btn.addEventListener("click", (e) => {
+      const filter = e.currentTarget.textContent;
+      const menuFiltered = filterMenu(filter);
+      renderMenu(menuFiltered);
+    });
+  });
 }
