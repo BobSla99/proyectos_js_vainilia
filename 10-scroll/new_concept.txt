@@ -1,0 +1,12 @@
+
+Element.getBoundingClientRect() devuelve la un objeto con la position del elemento que lo llamo,y su posicion relativa con espuesto al viewport.
+
+window.pageYOffset  es una propiedad de solo lectura numero de pixeles que a sido desplazado verticalmente el scroll, 
+
+window.scrollTo() lleva el scroll a las cordenadas especificada
+window.scrollTo( {
+    left:0, //cordenadas x
+    top:0,  //cordenadas y
+    behavior:"smooth"      // movimiento del scroll. 
+})  
+
