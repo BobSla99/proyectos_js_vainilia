@@ -27,11 +27,14 @@ const giveaway = document.querySelector(".giveaway");
 const deadline = document.querySelector(".deadline");
 
 const items = document.querySelectorAll(".deadline-format h4");
-console.log(items);
+
+let daysL,
+  hourL,
+  minsL,
+  secL = 0;
 
 //mostrando la fecha limite
-let futureDate = new Date(2024, 2, 26, 0, 1, 0);
-console.log(futureDate.getMinutes());
+let futureDate = new Date(2025, 2, 26, 8, 15, 0);
 const year = futureDate.getFullYear();
 const day = futureDate.getDate();
 const dayWeek = futureDate.getDay();
@@ -41,7 +44,9 @@ const min = futureDate.getMinutes();
 
 const textGiveaway = `Giveaway ends on ${weekdays[dayWeek]} , ${day} ${
   months[month]
-} ${year},${hour > 12 ? hour - 12 : hour}:${min}
+} ${year},${hour > 12 ? hour - 12 : hour < 10 ? "0" + hour : hour}:${
+  min < 10 ? "0" + min : min
+}
 ${hour < 12 ? "am" : "pm"}  `;
 giveaway.textContent = textGiveaway;
 
@@ -52,12 +57,39 @@ setInterval(() => {
   const futureTime = futureDate.getTime();
 
   let secsLeft = (futureTime - Date.now()) / 1000;
-  const daysL = Math.floor(secsLeft / (60 * 60 * 24));
-  const hourL = Math.floor(secsLeft / 3600);
+  daysL = Math.floor(secsLeft / (60 * 60 * 24));
+  hourL = Math.floor(secsLeft / 3600);
   secsLeft = secsLeft % 3600;
-  const minsL = Math.floor(secsLeft / 60);
+  minsL = Math.floor(secsLeft / 60);
   secsLeft = secsLeft % 60;
-  const secL = Math.floor(secsLeft);
+  secL = Math.floor(secsLeft);
 
-  console.log("days:", daysL, " horas:", hourL, " min:", minsL, " secs:", secL);
+  // console.log("days:", daysL, " horas:", hourL, " min:", minsL, " secs:", secL);
+
+  renderCounter();
 }, 1000);
+
+//funcion para actualizar los valores
+function renderCounter() {
+  const conters = document.querySelectorAll(".deadline h4");
+
+  conters.forEach((counter) => {
+    const idCon = counter.classList[0];
+    switch (idCon) {
+      case "days":
+        counter.textContent = daysL;
+        break;
+      case "hours":
+        counter.textContent = hourL;
+        break;
+      case "mins":
+        counter.textContent = minsL;
+        break;
+      case "secs":
+        counter.textContent = secL;
+        break;
+      default:
+        break;
+    }
+  });
+}

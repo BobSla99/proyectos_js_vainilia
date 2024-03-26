@@ -1,0 +1,6 @@
+metodos para manipular fechas
+
+const date = new Date(); //devuelve la fecha del momento en que se invoca
+
+
+date.getTime() //devuelve el calor de date en milisegundos
