@@ -1,0 +1,4 @@
+
+*****position :absolute******
+
+position :absolute ; el elemento se va a posicionar con recpecto al contenedor padre que tenga una position diferente de static(default),si no existe ese contenedor se posiciona con respecto al body
