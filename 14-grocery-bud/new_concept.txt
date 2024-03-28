@@ -1,0 +1,60 @@
+DOMCotentLoaded se puese a anadir a:
+
+***** window.addEventListener("DOMCotentLoaded",callBackF) *****
+    captura global  espera a que todo el contenido de la ventana cargue,script,viedos etc
+
+
+***** window.addEventListener("DOMCotentLoaded",callBackF) ****
+
+    Especificidad: Al agregar el evento a document, estás siendo más específico al enfocarte solo en la carga completa del DOM, excluyendo otros eventos de carga como imágenes o scripts 
+
+
+**** manipulacion del DOM ****
+
+    Un node eliminandose a si mismo
+
+    node.parentElement.removeChild(node);
+
+
+    //metodo para eliminar una lista de node conociendo el parent.
+    //si tengo item en items
+    if (items.length > 0) { 
+        items.forEach((item) => {
+        list.removeChild(item);
+        });
+    }
+
+    selecionar un nodo hermano
+        node.previousElementSibling 
+
+******** Manipulacion de atributos ,data-id ********
+
+    **manipulacion directa nodos existente en el DOM**
+
+        //anadir un atributo a un nodo directamente
+        node.setAttribute("data-id","14");
+
+        //recuperar el atributo
+        node.getAttribute("data-id");
+
+    **creando el elemento desde cero para andirlo a un nodo**
+        //creando el attibute 
+        let atrr=document.createAttribute(data-id);
+        //anadiendole el valor
+        atrr.value = 14;
+        //anadir el valor al node de destino
+        node.setAttributeNode(atrr)
+
+    **recuperar el atributo de un nodo**
+        const dataId= node.dataset.id;
+
+********* Local Storage ***********
+
+    //anadir al localStorage
+    localStorage.setItem("key","value");
+
+    //recuperar del localStorage
+    localStorage.getItem("key");
+
+    //eliminar del localStorage
+    localStorage.removeItem("key");
