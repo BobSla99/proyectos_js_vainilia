@@ -2,3 +2,26 @@
 *****position :absolute******
 
 position :absolute ; el elemento se va a posicionar con recpecto al contenedor padre que tenga una position diferente de static(default),si no existe ese contenedor se posiciona con respecto al body
+
+
+**** accediendo a style en el DOM ****
+
+    se puede anadir  o sobrescribir estilos a un elemento node,seran incluido de forma inline en el html
+
+      //  para acceder a un estilo se utiliza 
+        node.style.propertiNameEnCamelCase="valueEnString";
+      //ejemplo 1
+        node.style.fontColor= "#ff4399" ;
+   //ejemplo 2
+   node.style.transform=" translateX(200px) ";
+
+**** si se quiere leer un stilo del DOM se utiliza window.getComputedStyle(node);*****
+
+    esto devuelve el stilo final que se le esta aplicandoal elemento ya sea por declaraciones inline o por styleSheet externas.
+
+    const node1Style=window.getComputedStyle(node1)
+    //para leer los valores se  usa la misma notacion de arriba
+    console.log(node1Style.fontColor)
+
+
+    
